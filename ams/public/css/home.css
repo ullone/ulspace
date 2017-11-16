@@ -1,0 +1,68 @@
+body {
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.jumbotron {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  margin-bottom: 0;
+  background-color: #fff;
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 80rem;
+}
+
+.album {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.rgt {
+  padding-bottom: 0.3125rem;
+}
+
+.lft {
+  width: 80%;
+}
+
+.card {
+  float: left;
+  width: 6rem;
+  padding: .75rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border: 0;
+}
+
+.card > img {
+  margin-bottom: .5rem;
+  height: 5.5rem;
+}
+
+.card-text {
+  font-size: 0.75rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
