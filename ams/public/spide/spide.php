@@ -1,7 +1,7 @@
 <?php
 exit('haha');
 require('tool.php');
-// require('redisQueue.php');
+require('redisQueue.php');
 require('Workerman/Worker.php');
 require('Workerman/Lib/Timer.php');
 
