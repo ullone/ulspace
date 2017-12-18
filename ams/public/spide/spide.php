@@ -67,9 +67,9 @@ class Spide {
 
   //爬虫启动函数
   public function start() {
-    if(!isset($this->commands)) {
-      $this->daemonize = false;
-    }
+    // if(!isset($this->commands)) {
+    //   $this->daemonize = false;
+    // }
 
     if($this->daemonize) {
       //启动守护进程
@@ -91,10 +91,10 @@ class Spide {
       // self::run();
     } else {
       // $this->initHooks();
-      $this->seed = (array) $this->seed;
-      while (count($this->seed)) {
+      // $this->seed = (array) $this->seed;
+      // while (count($this->seed)) {
           // $this->crawler();
-      }
+      // }
     }
   }
 
