@@ -1,6 +1,6 @@
 <?php
 
-require('Tool.php');
+require('tool.php');
 
 class RedisQueue {
 
