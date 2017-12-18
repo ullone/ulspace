@@ -88,7 +88,7 @@ class Spide {
       $this->queueArgs['name'] = $this->name;
       // $this->initHooks();
       // $this->command();
-      self::run();
+      // self::run();
     } else {
       // $this->initHooks();
       $this->seed = (array) $this->seed;
