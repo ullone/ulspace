@@ -1,8 +1,8 @@
 <?php
 
-require('tool.php');
-require('redisQueue.php');
+// require('redisQueue.php');
 require('Workerman/Worker.php');
+require('tool.php');
 require('Workerman/Lib/Timer.php');
 
 exit('haha');
