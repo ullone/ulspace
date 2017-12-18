@@ -10,3 +10,6 @@ class Tool {
     echo "haha";die;
   }
 }
+
+$test = new Tool();
+$test->index();
