@@ -342,7 +342,7 @@ class Spide {
   public function setQueue($arr = array('algorithm' => 'lp', 'name' => 'spide')) {
     $this->queueFactory = function($arr) {
       return new RedisQueue($arr);
-    }
+    };
     $this->queueArgs = $arr;
   }
 
