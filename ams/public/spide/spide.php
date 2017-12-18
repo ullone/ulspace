@@ -215,23 +215,23 @@ class Spide {
     }
   }
 
-  // private function fileLog($msg, $spide) {
-  //   $myFile  = fopen($this->lofFile, "a") or die ('open file failed!');
-  //   $content = date('Y-m-d H:i:s')."$spide->name : $msg\n";
-  //   fwrite($myFile, $content);
-  //   fclose($myFile);
-  // }
-  //
-  // public function log($msg) {
-  //   call_user_func($this->logFactory, $msg, $this);
-  // }
-  //
-  // public function setLog($callBack = null) {
-  //   $this->logFactory = $callBack === null ? function($msg, $spide) {
-  //     echo date('Y-m-d H:i:s')."$spide->name : $msg\n";
-  //   } : $callBack;
-  // }
-  //
+  private function fileLog($msg, $spide) {
+    $myFile  = fopen($this->lofFile, "a") or die ('open file failed!');
+    $content = date('Y-m-d H:i:s')."$spide->name : $msg\n";
+    fwrite($myFile, $content);
+    fclose($myFile);
+  }
+
+  public function log($msg) {
+    call_user_func($this->logFactory, $msg, $this);
+  }
+
+  public function setLog($callBack = null) {
+    $this->logFactory = $callBack === null ? function($msg, $spide) {
+      echo date('Y-m-d H:i:s')."$spide->name : $msg\n";
+    } : $callBack;
+  }
+
   //非守护进程下执行，一次爬取五条
   public function crawler() {
     $allHooks = $this->hooks;
