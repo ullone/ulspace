@@ -2,7 +2,7 @@
 
 class Tool {
   public static function config() {
-    $cfgPath = './config.php';
+    $cfgPath = 'config.php';
     if(file_exists($cfgPath)) $contents = require($cfgPath);
     return $contents ? $contents : [];
   }
@@ -41,52 +41,52 @@ class Tool {
     return array_flip(array_flip(array_filter($hrefs)));
   }
 
-  public static function formatUrl($l1, $l2) {
-    if (strlen($l1) > 0) {
-        $I1 = str_replace([chr(34), chr(39)], '', $l1);
-    } else {
-        return $l1;
-    }
-    $url_parsed = parse_url($l2);
-    $scheme = $url_parsed['scheme'];
-    if ($scheme != '') {
-        $scheme .= '://';
-    }
-    $host = $url_parsed['host'];
-    $l3 = $scheme . $host;
-    if (strlen($l3) == 0) {
-        return $l1;
-    }
-    if(isset($url_parsed['path'])) {
-      $path = dirname($url_parsed['path']);
-      if ($path[0] == '\\') {
-          $path = '';
-      }
-    } else $path = '';
-    $pos = strpos($I1, '#');
-    if ($pos > 0) {
-        $I1 = substr($I1, 0, $pos);
-    }
-    //判断类型
-    if (preg_match("/^(http|https|ftp):(\/\/|\\\\)(([\w\/\\\+\-~`@:%])+\.)+([\w\/\\\.\=\?\+\-~`@\':!%#]|(&)|&)+/i", $I1)) {
-        return $I1;
-    } elseif ($I1[0] == '/') {
-        return $I1 = $l3 . $I1;
-    } elseif (substr($I1, 0, 3) == '../') {
-        //相对路径
-        while (substr($I1, 0, 3) == '../') {
-            $I1 = substr($I1, strlen($I1) - (strlen($I1) - 3), strlen($I1) - 3);
-            if (strlen($path) > 0) {
-                $path = dirname($path);
-            }
-        }
-        return $I1 = $path == '/' ? $l3 . $path . $I1 : $l3 . $path . "/" . $I1;
-    } elseif (substr($I1, 0, 2) == './') {
-        return $I1 = $l3 . $path . substr($I1, strlen($I1) - (strlen($I1) - 1), strlen($I1) - 1);
-    } elseif (strtolower(substr($I1, 0, 7)) == 'mailto:' || strtolower(substr($I1, 0, 11)) == 'javascript:') {
-        return false;
-    } else {
-        return $I1 = $l3 . $path . '/' . $I1;
-    }
-  }
+  // public static function formatUrl($l1, $l2) {
+  //   if (strlen($l1) > 0) {
+  //       $I1 = str_replace([chr(34), chr(39)], '', $l1);
+  //   } else {
+  //       return $l1;
+  //   }
+  //   $url_parsed = parse_url($l2);
+  //   $scheme = $url_parsed['scheme'];
+  //   if ($scheme != '') {
+  //       $scheme .= '://';
+  //   }
+  //   $host = $url_parsed['host'];
+  //   $l3 = $scheme . $host;
+  //   if (strlen($l3) == 0) {
+  //       return $l1;
+  //   }
+  //   if(isset($url_parsed['path'])) {
+  //     $path = dirname($url_parsed['path']);
+  //     if ($path[0] == '\\') {
+  //         $path = '';
+  //     }
+  //   } else $path = '';
+  //   $pos = strpos($I1, '#');
+  //   if ($pos > 0) {
+  //       $I1 = substr($I1, 0, $pos);
+  //   }
+  //   //判断类型
+  //   if (preg_match("/^(http|https|ftp):(\/\/|\\\\)(([\w\/\\\+\-~`@:%])+\.)+([\w\/\\\.\=\?\+\-~`@\':!%#]|(&)|&)+/i", $I1)) {
+  //       return $I1;
+  //   } elseif ($I1[0] == '/') {
+  //       return $I1 = $l3 . $I1;
+  //   } elseif (substr($I1, 0, 3) == '../') {
+  //       //相对路径
+  //       while (substr($I1, 0, 3) == '../') {
+  //           $I1 = substr($I1, strlen($I1) - (strlen($I1) - 3), strlen($I1) - 3);
+  //           if (strlen($path) > 0) {
+  //               $path = dirname($path);
+  //           }
+  //       }
+  //       return $I1 = $path == '/' ? $l3 . $path . $I1 : $l3 . $path . "/" . $I1;
+  //   } elseif (substr($I1, 0, 2) == './') {
+  //       return $I1 = $l3 . $path . substr($I1, strlen($I1) - (strlen($I1) - 1), strlen($I1) - 1);
+  //   } elseif (strtolower(substr($I1, 0, 7)) == 'mailto:' || strtolower(substr($I1, 0, 11)) == 'javascript:') {
+  //       return false;
+  //   } else {
+  //       return $I1 = $l3 . $path . '/' . $I1;
+  //   }
+  // }
 }
