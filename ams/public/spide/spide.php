@@ -287,37 +287,37 @@ class Spide {
     $this->url     = $queue['url'];
     $this->options = $options;
   }
+
+  public function defaultDownloadPage() {
+    $this->page = $this->downloader();
+    if($this->page) {
+      $worker_id = isset($this->id) ? $this->id : '';
+      $this->log("Beanbun worker {$worker_id} download {$this->url} success.");
+    } else {
+      exit('download page failed!');
+    }
+  }
+
+  public function defaultDiscoverUrl() {
+    $countUrlFilter = count($this->urlFilter);
+
+    $urls = Tool::getUrlByHtml($this->page, $this->url);
+
+    if($countUrlFilter > 0) {
+      foreach($urls as $url) {
+        foreach($this->urlFilter as $pattern) {
+          if(preg_match($pattern, $url)) {
+            $this->queue()->add($url);
+          }
+        }
+      }
+    } else {
+      foreach($urls as $url) {
+        $this->queue()->add($url);
+      }
+    }
+  }
   
-  // public function defaultDownloadPage() {
-  //   $this->page = $this->downloader();
-  //   if($this->page) {
-  //     $worker_id = isset($this->id) ? $this->id : '';
-  //     $this->log("Beanbun worker {$worker_id} download {$this->url} success.");
-  //   } else {
-  //     exit('download page failed!');
-  //   }
-  // }
-  //
-  // public function defaultDiscoverUrl() {
-  //   $countUrlFilter = count($this->urlFilter);
-  //
-  //   $urls = Tool::getUrlByHtml($this->page, $this->url);
-  //
-  //   if($countUrlFilter > 0) {
-  //     foreach($urls as $url) {
-  //       foreach($this->urlFilter as $pattern) {
-  //         if(preg_match($pattern, $url)) {
-  //           $this->queue()->add($url);
-  //         }
-  //       }
-  //     }
-  //   } else {
-  //     foreach($urls as $url) {
-  //       $this->queue()->add($url);
-  //     }
-  //   }
-  // }
-  //
   // public function setDownloader($callBack = null) {
   //   $this->downloadFactory = ($callBack === null) ? [$this, 'downloadPage'] : $callBack;
   // }
