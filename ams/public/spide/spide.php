@@ -317,33 +317,33 @@ class Spide {
       }
     }
   }
-  
-  // public function setDownloader($callBack = null) {
-  //   $this->downloadFactory = ($callBack === null) ? [$this, 'downloadPage'] : $callBack;
-  // }
-  //
-  // public function downloader() {
-  //   call_user_func($this->downloadFactory, $this->url);
-  // }
-  //
-  // private function downloadPage() {
-  //   $cookie = Tool::config()['cookie'];
-  //   return Tool::doCurl($this->url, $cookie);
-  // }
-  //
-  // public function queue() {
-  //   if($this->queues) {
-  //     $this->queues = call_user_func($this->queueFactory, $this->queueArgs);
-  //   }
-  //   return $this->queues;
-  // }
 
-  // public function setQueue($arr = array('algorithm' => 'lp', 'name' => $this->name)) {
-  //   $this->queueFactory = function($arr) {
-  //     return new RedisQueue($arr);
-  //   }
-  //   $this->queueArgs = $arr;
-  // }
+  public function setDownloader($callBack = null) {
+    $this->downloadFactory = ($callBack === null) ? [$this, 'downloadPage'] : $callBack;
+  }
+
+  public function downloader() {
+    call_user_func($this->downloadFactory, $this->url);
+  }
+
+  private function downloadPage() {
+    $cookie = Tool::config()['cookie'];
+    return Tool::doCurl($this->url, $cookie);
+  }
+
+  public function queue() {
+    if($this->queues) {
+      $this->queues = call_user_func($this->queueFactory, $this->queueArgs);
+    }
+    return $this->queues;
+  }
+
+  public function setQueue($arr = array('algorithm' => 'lp', 'name' => $this->name)) {
+    $this->queueFactory = function($arr) {
+      return new RedisQueue($arr);
+    }
+    $this->queueArgs = $arr;
+  }
 
   public function check()
   {
