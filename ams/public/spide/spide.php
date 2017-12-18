@@ -57,7 +57,7 @@ class Spide {
       //启动守护进程
       // $this->check();
 
-      $worker = new Worker;
+      $worker = new Worker; 
       // $worker->count = $this->count;
       // $worker->name  = $this->name;//worker实例名称
       // $worker->onWorkerStart = [$this, 'onWorkerStart']
