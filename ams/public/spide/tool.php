@@ -3,7 +3,8 @@
 class Tool {
   public static function config() {
     $cfgPath = __DIR__ . '/config.php';
-    // if(file_exists($cfgPath)) $contents = 'hehe';
+    // if(file_exists($cfgPath))
+    $contents = 'hehe';
       // $contents = require($cfgPath);
     return $contents ? $contents : [];
   }
