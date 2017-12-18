@@ -99,18 +99,18 @@ class Spide {
   }
 
   // worker进程启动时执行
-  // public function onWorkerStart() {
-  //   foreach($this->startWorkerHooks as $hook) {
-  //     call_user_func($hook, $this);
-  //   }
-  // }
-  //
-  // //worker进程停止时执行
-  // public function onWorkerStop() {
-  //   foreach($this->stopWorkerHooks as $hook) {
-  //     call_user_func($hook, $this);
-  //   }
-  // }
+  public function onWorkerStart() {
+    foreach($this->startWorkerHooks as $hook) {
+      call_user_func($hook, $this);
+    }
+  }
+
+  //worker进程停止时执行
+  public function onWorkerStop() {
+    foreach($this->stopWorkerHooks as $hook) {
+      call_user_func($hook, $this);
+    }
+  }
 
   //初始化一系列钩子函 数并规定执行顺序
   public function initHooks() {
