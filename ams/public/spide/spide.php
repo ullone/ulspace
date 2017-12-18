@@ -185,9 +185,9 @@ class Spide {
   //   Timer::del($timer_id);
   // }
   //
-  public static function run() {
-    Worker::runAll();
-  }
+  // public static function run() {
+  //   Worker::runAll();
+  // }
 
   //命令行控制
   // public function command() {
