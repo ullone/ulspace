@@ -16,6 +16,7 @@ class Spide {
   public  $max = 100000;    //队列最大个数
   public  $timer_id;        //定时服务id
   public  $options = [];    //入队item参数
+  public  $daemonize;
   public  $urlFilter = [
     '/^https:\/\/www\.zhihu\.com\/question\/\d{1,}\/answer\/d{1,}$/',
     '/^(https:\/\/)[a-z]{1,}\.zhihu\.com\/p\/(\d{1,})$/'
@@ -72,10 +73,10 @@ class Spide {
       // self::run();
     } else {
       // $this->initHooks();
-      $this->seed = (array) $this->seed;
-      while (count($this->seed)) {
-          // $this->crawler();
-      }
+      // $this->seed = (array) $this->seed;
+      // while (count($this->seed)) {
+      //     // $this->crawler();
+      // }
     }
   }
 
