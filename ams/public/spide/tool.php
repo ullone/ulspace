@@ -6,7 +6,7 @@ class Tool {
     // if(file_exists($cfgPath))
     $contents = 'hehe';
       // $contents = require($cfgPath);
-    return $contents ? $contents : [];
+    // return $contents ? $contents : [];
   }
 
   // public static function doCurl($url, $cookie) {
