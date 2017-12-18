@@ -25,6 +25,7 @@ class Spide {
   private $url;             //正在处理的url
   private $page;            //从URL爬取的正在处理的页面内容
   private $queues;          //队列实例
+  private $commands;
   private $hooks = [
       'startWorkerHooks',
       'beforeDownloadPageHooks',
@@ -45,37 +46,37 @@ class Spide {
   }
 
   //爬虫启动函数
-  // public function start() {
-  //   if(!isset($this->commands)) {
-  //     $this->daemonize = false;
-  //   }
-  //
-  //   if($this->daemonize) {
-  //     //启动守护进程
-  //     $this->check();
-  //
-  //     $worker = new Worker;
-  //     $worker->count = $this->count;
-  //     $worker->name  = $this->name;//worker实例名称
-  //     $worker->onWorkerStart = [$this, 'onWorkerStart']
-  //     $worker->onWorkerStop  = [$this, 'onWorkerStop'];
-  //     $this->worker = $worker;
-  //
-  //     Worker::$daemonize = true;
-  //     Worker::$stdoutFile = $this->logFile;
-  //
-  //     $this->queueArgs['name'] = $this->name;
-  //     $this->initHooks();
-  //     $this->command();
-  //     self::run();
-  //   } else {
-  //     $this->initHooks();
-  //     $this->seed = (array) $this->seed;
-  //     while (count($this->seed)) {
-  //         $this->crawler();
-  //     }
-  //   }
-  // }
+  public function start() {
+    if(!isset($this->commands)) {
+      $this->daemonize = false;
+    }
+
+    if($this->daemonize) {
+      //启动守护进程
+      $this->check();
+
+      $worker = new Worker;
+      $worker->count = $this->count;
+      $worker->name  = $this->name;//worker实例名称
+      $worker->onWorkerStart = [$this, 'onWorkerStart']
+      $worker->onWorkerStop  = [$this, 'onWorkerStop'];
+      $this->worker = $worker;
+
+      Worker::$daemonize = true;
+      Worker::$stdoutFile = $this->logFile;
+
+      $this->queueArgs['name'] = $this->name;
+      $this->initHooks();
+      $this->command();
+      self::run();
+    } else {
+      $this->initHooks();
+      $this->seed = (array) $this->seed;
+      while (count($this->seed)) {
+          $this->crawler();
+      }
+    }
+  }
 
   //worker进程启动时执行
   // public function onWorkerStart() {
