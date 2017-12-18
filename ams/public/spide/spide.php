@@ -190,153 +190,153 @@ class Spide {
   }
 
   //命令行控制
-  public function command() {
-    switch($this->commands[1]) {
-      case 'start' :
-        foreach($this->seed as $url) {
-          if(is_string($url)) {
-            $this->queue()->add($url);
-          } elseif(is_array($url)) {
-            $this->queue()->add($url[0], $url[1]);
-          }
-        }
-        $this->queues = null;//初始化
-        $this->log('Spide is starting');
-        break;
-
-      case 'clean':
-        $this->queue->clean();
-        die();
-        break;
-      case 'stop':
-        break;
-      default:
-        break;
-    }
-  }
-
-  private function fileLog($msg, $spide) {
-    $myFile  = fopen($this->lofFile, "a") or die ('open file failed!');
-    $content = date('Y-m-d H:i:s')."$spide->name : $msg\n";
-    fwrite($myFile, $content);
-    fclose($myFile);
-  }
-
-  public function log($msg) {
-    call_user_func($this->logFactory, $msg, $this);
-  }
-
-  public function setLog($callBack = null) {
-    $this->logFactory = $callBack === null ? function($msg, $spide) {
-      echo date('Y-m-d H:i:s')."$spide->name : $msg\n";
-    } : $callBack;
-  }
-
-  //非守护进程下执行，一次爬取五条
-  public function crawler() {
-    $allHooks = $this->hooks;
-    array_shift($allHooks);
-    array_pop($allHooks);
-
-    foreach ($allHooks as $hooks) {//爬取5条记录
-        foreach ($this->$hooks as $hook) {//完成爬取一条记录的整个流程
-            call_user_func($hook, $this);
-        }
-    }
-
-    // $this->queue = '';
-    // $this->url = '';
-    // $this->method = '';
-    // $this->page = '';
-    // $this->options = [];
-  }
-
-  public function defaultBeforeDownloadPage() {
-    if($this->daemonize) {
-      if($this->max > 0 && $this->queue()->queuedCount() >= $this->max) {
-        $this->log("Download the url failed for the url has touched the upper limit;The spide worker $this->id has stopped!\n");
-        self::timerDel($this->timer_id);
-        exit('download upper limit');
-      }
-      $this->queue = $queue = $this->queue()->next();
-    } else {
-      $queue = array_shift($this->seed);
-    }
-
-    if(is_null($queue) || !$queue) {
-      sleep(30);
-      exit('queue is empty');
-    }
-
-    if(!is_array($queue)) {
-      $this->queue = $queue = array(
-        'url' => $queue,
-        'options' => [],
-      );
-    }
-
-    $options = array_merge([
-        'reserve' => false,
-        'timeout' => $this->timeout,
-    ], (array) $queue['options']);
-
-    if($this->daemonize && !$options['reserve'] && $this->queue()->isQueued($queue)) {
-      exit('error');
-    }
-
-    $this->url     = $queue['url'];
-    $this->options = $options;
-  }
-
-  public function defaultDownloadPage() {
-    $this->page = $this->downloader();
-    if($this->page) {
-      $worker_id = isset($this->id) ? $this->id : '';
-      $this->log("Beanbun worker {$worker_id} download {$this->url} success.");
-    } else {
-      exit('download page failed!');
-    }
-  }
-
-  public function defaultDiscoverUrl() {
-    $countUrlFilter = count($this->urlFilter);
-
-    $urls = Tool::getUrlByHtml($this->page, $this->url);
-
-    if($countUrlFilter > 0) {
-      foreach($urls as $url) {
-        foreach($this->urlFilter as $pattern) {
-          if(preg_match($pattern, $url)) {
-            $this->queue()->add($url);
-          }
-        }
-      }
-    } else {
-      foreach($urls as $url) {
-        $this->queue()->add($url);
-      }
-    }
-  }
-
-  public function setDownloader($callBack = null) {
-    $this->downloadFactory = ($callBack === null) ? [$this, 'downloadPage'] : $callBack;
-  }
-
-  public function downloader() {
-    call_user_func($this->downloadFactory, $this->url);
-  }
-
-  private function downloadPage() {
-    $cookie = Tool::config()['cookie'];
-    return Tool::doCurl($this->url, $cookie);
-  }
-
-  public function queue() {
-    if($this->queues) {
-      $this->queues = call_user_func($this->queueFactory, $this->queueArgs);
-    }
-    return $this->queues;
-  }
+  // public function command() {
+  //   switch($this->commands[1]) {
+  //     case 'start' :
+  //       foreach($this->seed as $url) {
+  //         if(is_string($url)) {
+  //           $this->queue()->add($url);
+  //         } elseif(is_array($url)) {
+  //           $this->queue()->add($url[0], $url[1]);
+  //         }
+  //       }
+  //       $this->queues = null;//初始化
+  //       $this->log('Spide is starting');
+  //       break;
+  //
+  //     case 'clean':
+  //       $this->queue->clean();
+  //       die();
+  //       break;
+  //     case 'stop':
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
+  //
+  // private function fileLog($msg, $spide) {
+  //   $myFile  = fopen($this->lofFile, "a") or die ('open file failed!');
+  //   $content = date('Y-m-d H:i:s')."$spide->name : $msg\n";
+  //   fwrite($myFile, $content);
+  //   fclose($myFile);
+  // }
+  //
+  // public function log($msg) {
+  //   call_user_func($this->logFactory, $msg, $this);
+  // }
+  //
+  // public function setLog($callBack = null) {
+  //   $this->logFactory = $callBack === null ? function($msg, $spide) {
+  //     echo date('Y-m-d H:i:s')."$spide->name : $msg\n";
+  //   } : $callBack;
+  // }
+  //
+  // //非守护进程下执行，一次爬取五条
+  // public function crawler() {
+  //   $allHooks = $this->hooks;
+  //   array_shift($allHooks);
+  //   array_pop($allHooks);
+  //
+  //   foreach ($allHooks as $hooks) {//爬取5条记录
+  //       foreach ($this->$hooks as $hook) {//完成爬取一条记录的整个流程
+  //           call_user_func($hook, $this);
+  //       }
+  //   }
+  //
+  //   // $this->queue = '';
+  //   // $this->url = '';
+  //   // $this->method = '';
+  //   // $this->page = '';
+  //   // $this->options = [];
+  // }
+  //
+  // public function defaultBeforeDownloadPage() {
+  //   if($this->daemonize) {
+  //     if($this->max > 0 && $this->queue()->queuedCount() >= $this->max) {
+  //       $this->log("Download the url failed for the url has touched the upper limit;The spide worker $this->id has stopped!\n");
+  //       self::timerDel($this->timer_id);
+  //       exit('download upper limit');
+  //     }
+  //     $this->queue = $queue = $this->queue()->next();
+  //   } else {
+  //     $queue = array_shift($this->seed);
+  //   }
+  //
+  //   if(is_null($queue) || !$queue) {
+  //     sleep(30);
+  //     exit('queue is empty');
+  //   }
+  //
+  //   if(!is_array($queue)) {
+  //     $this->queue = $queue = array(
+  //       'url' => $queue,
+  //       'options' => [],
+  //     );
+  //   }
+  //
+  //   $options = array_merge([
+  //       'reserve' => false,
+  //       'timeout' => $this->timeout,
+  //   ], (array) $queue['options']);
+  //
+  //   if($this->daemonize && !$options['reserve'] && $this->queue()->isQueued($queue)) {
+  //     exit('error');
+  //   }
+  //
+  //   $this->url     = $queue['url'];
+  //   $this->options = $options;
+  // }
+  //
+  // public function defaultDownloadPage() {
+  //   $this->page = $this->downloader();
+  //   if($this->page) {
+  //     $worker_id = isset($this->id) ? $this->id : '';
+  //     $this->log("Beanbun worker {$worker_id} download {$this->url} success.");
+  //   } else {
+  //     exit('download page failed!');
+  //   }
+  // }
+  //
+  // public function defaultDiscoverUrl() {
+  //   $countUrlFilter = count($this->urlFilter);
+  //
+  //   $urls = Tool::getUrlByHtml($this->page, $this->url);
+  //
+  //   if($countUrlFilter > 0) {
+  //     foreach($urls as $url) {
+  //       foreach($this->urlFilter as $pattern) {
+  //         if(preg_match($pattern, $url)) {
+  //           $this->queue()->add($url);
+  //         }
+  //       }
+  //     }
+  //   } else {
+  //     foreach($urls as $url) {
+  //       $this->queue()->add($url);
+  //     }
+  //   }
+  // }
+  //
+  // public function setDownloader($callBack = null) {
+  //   $this->downloadFactory = ($callBack === null) ? [$this, 'downloadPage'] : $callBack;
+  // }
+  //
+  // public function downloader() {
+  //   call_user_func($this->downloadFactory, $this->url);
+  // }
+  //
+  // private function downloadPage() {
+  //   $cookie = Tool::config()['cookie'];
+  //   return Tool::doCurl($this->url, $cookie);
+  // }
+  //
+  // public function queue() {
+  //   if($this->queues) {
+  //     $this->queues = call_user_func($this->queueFactory, $this->queueArgs);
+  //   }
+  //   return $this->queues;
+  // }
 
   // public function setQueue($arr = array('algorithm' => 'lp', 'name' => $this->name)) {
   //   $this->queueFactory = function($arr) {
