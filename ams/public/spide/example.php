@@ -1,7 +1,6 @@
 <?php
-include("spide.php");
+require("spide.php");
 
-exit('test');
 class Example {
 
   public function __construct() {

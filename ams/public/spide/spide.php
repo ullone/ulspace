@@ -4,8 +4,6 @@ require('redisQueue.php');
 require('Workerman/Worker.php');
 require('Workerman/Lib/Timer.php');
 
-exit('haha');
-
 class Spide {
 
   public  $id;              //worker实例id
