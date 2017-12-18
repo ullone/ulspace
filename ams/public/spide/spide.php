@@ -22,6 +22,7 @@ class Spide {
   ];                        //网址匹配规则
 
   private $queueArgs = [];  //队列规则参数
+  private $worker;
   private $url;             //正在处理的url
   private $page;            //从URL爬取的正在处理的页面内容
   private $queues;          //队列实例
