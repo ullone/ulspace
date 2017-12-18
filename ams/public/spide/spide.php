@@ -49,17 +49,17 @@ class Spide {
 
   //爬虫启动函数
   public function start() {
-    // if(!isset($this->commands)) {
-    //   $this->daemonize = false;
-    // }
+    if(!isset($this->commands)) {
+      $this->daemonize = false;
+    }
 
     if($this->daemonize) {
       //启动守护进程
       // $this->check();
 
-      $worker = new Worker; 
-      // $worker->count = $this->count;
-      // $worker->name  = $this->name;//worker实例名称
+      $worker = new Worker;
+      $worker->count = $this->count;
+      $worker->name  = $this->name;//worker实例名称
       // $worker->onWorkerStart = [$this, 'onWorkerStart']
       // $worker->onWorkerStop  = [$this, 'onWorkerStop'];
       // $this->worker = $worker;
