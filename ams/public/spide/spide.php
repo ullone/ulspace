@@ -251,43 +251,43 @@ class Spide {
     // $this->options = [];
   }
 
-  // public function defaultBeforeDownloadPage() {
-  //   if($this->daemonize) {
-  //     if($this->max > 0 && $this->queue()->queuedCount() >= $this->max) {
-  //       $this->log("Download the url failed for the url has touched the upper limit;The spide worker $this->id has stopped!\n");
-  //       self::timerDel($this->timer_id);
-  //       exit('download upper limit');
-  //     }
-  //     $this->queue = $queue = $this->queue()->next();
-  //   } else {
-  //     $queue = array_shift($this->seed);
-  //   }
-  //
-  //   if(is_null($queue) || !$queue) {
-  //     sleep(30);
-  //     exit('queue is empty');
-  //   }
-  //
-  //   if(!is_array($queue)) {
-  //     $this->queue = $queue = array(
-  //       'url' => $queue,
-  //       'options' => [],
-  //     );
-  //   }
-  //
-  //   $options = array_merge([
-  //       'reserve' => false,
-  //       'timeout' => $this->timeout,
-  //   ], (array) $queue['options']);
-  //
-  //   if($this->daemonize && !$options['reserve'] && $this->queue()->isQueued($queue)) {
-  //     exit('error');
-  //   }
-  //
-  //   $this->url     = $queue['url'];
-  //   $this->options = $options;
-  // }
-  //
+  public function defaultBeforeDownloadPage() {
+    if($this->daemonize) {
+      if($this->max > 0 && $this->queue()->queuedCount() >= $this->max) {
+        $this->log("Download the url failed for the url has touched the upper limit;The spide worker $this->id has stopped!\n");
+        self::timerDel($this->timer_id);
+        exit('download upper limit');
+      }
+      $this->queue = $queue = $this->queue()->next();
+    } else {
+      $queue = array_shift($this->seed);
+    }
+
+    if(is_null($queue) || !$queue) {
+      sleep(30);
+      exit('queue is empty');
+    }
+
+    if(!is_array($queue)) {
+      $this->queue = $queue = array(
+        'url' => $queue,
+        'options' => [],
+      );
+    }
+
+    $options = array_merge([
+        'reserve' => false,
+        'timeout' => $this->timeout,
+    ], (array) $queue['options']);
+
+    if($this->daemonize && !$options['reserve'] && $this->queue()->isQueued($queue)) {
+      exit('error');
+    }
+
+    $this->url     = $queue['url'];
+    $this->options = $options;
+  }
+  
   // public function defaultDownloadPage() {
   //   $this->page = $this->downloader();
   //   if($this->page) {
