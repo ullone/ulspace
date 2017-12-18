@@ -75,12 +75,12 @@ class Spide {
       //启动守护进程
       // $this->check();
 
-      $worker = new Worker;
-      $worker->count = $this->count;
-      $worker->name  = $this->name;//worker实例名称
-      $worker->onWorkerStart = [$this, 'onWorkerStart'];
-      $worker->onWorkerStop  = [$this, 'onWorkerStop'];
-      $this->worker = $worker;
+      // $worker = new Worker;
+      // $worker->count = $this->count;
+      // $worker->name  = $this->name;//worker实例名称
+      // $worker->onWorkerStart = [$this, 'onWorkerStart'];
+      // $worker->onWorkerStop  = [$this, 'onWorkerStop'];
+      // $this->worker = $worker;
 
       // Worker::$daemonize = true;
       // Worker::$stdoutFile = $this->logFile;
