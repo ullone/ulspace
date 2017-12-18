@@ -1,6 +1,6 @@
 <?php
 
-class Tool {
+// class Tool {
   // public static function config() {
     // $cfgPath = __DIR__ . '/config.php';
     // if(file_exists($cfgPath))
@@ -91,4 +91,4 @@ class Tool {
   //       return $I1 = $l3 . $path . '/' . $I1;
   //   }
   // }
-}
+// }
