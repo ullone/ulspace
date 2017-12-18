@@ -23,4 +23,4 @@ class Example {
 
 $seedUrls = ['https://www.zhihu.com',];
 $example  = new Example();
-$example->spide($seedUrls);
+$example->spide($seedUrls,[]);
