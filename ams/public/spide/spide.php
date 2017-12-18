@@ -82,10 +82,10 @@ class Spide {
       $worker->onWorkerStop  = [$this, 'onWorkerStop'];
       $this->worker = $worker;
 
-      Worker::$daemonize = true;
-      Worker::$stdoutFile = $this->logFile;
-
-      $this->queueArgs['name'] = $this->name;
+      // Worker::$daemonize = true;
+      // Worker::$stdoutFile = $this->logFile;
+      //
+      // $this->queueArgs['name'] = $this->name;
       // $this->initHooks();
       // $this->command();
       // self::run();
