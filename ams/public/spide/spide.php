@@ -41,7 +41,7 @@ class Spide {
   private $downloadPage;
   private $beforeDownloadPage;
   private $beforeDownloadPageHooks = [];
-  private $afterDownloadPageHooks = []
+  private $afterDownloadPageHooks = [];
   private $downloadPageHooks = [];
   private $discoverUrlHooks = [];
   private $afterDiscoverHooks = [];
