@@ -7,20 +7,20 @@ class Tool {
     return $contents ? $contents : [];
   }
 
-  public static function doCurl($url, $cookie) {
-    $ch = curl_init($url);
-    //初始化会话
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_COOKIE, $cookie);
-    //设置请求COOKIE
-    curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    //将curl_exec()获取的信息以文件流的形式返回，而不是直接输出。
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//跳过ssl验证，当没有敏感信息时
-    $result = curl_exec($ch);
-    return $result;  //抓取的结果
-  }
+  // public static function doCurl($url, $cookie) {
+  //   $ch = curl_init($url);
+  //   //初始化会话
+  //   curl_setopt($ch, CURLOPT_HEADER, 0);
+  //   curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+  //   //设置请求COOKIE
+  //   curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+  //   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  //   //将curl_exec()获取的信息以文件流的形式返回，而不是直接输出。
+  //   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+  //   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//跳过ssl验证，当没有敏感信息时
+  //   $result = curl_exec($ch);
+  //   return $result;  //抓取的结果
+  // }
 
   // public static function getUrlByHtml($html, $url) {
   //   $pattern = "'<\s*a\s.*?href\s*=\s*([\"\'])?(?(1) (.*?)\\1 | ([^\s\>]+))'isx";
