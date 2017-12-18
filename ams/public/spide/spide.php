@@ -35,47 +35,47 @@ class Spide {
       'stopWorkerHooks',
   ];                        //爬取网页要执行的一系列的钩子函数
 
-  public function __construct($config = []) {
-    global $argv;
-    $this->commands = $argv;
-
-    $this->setQueue();
-    $this->setLog([$this, 'fileLog']);
-    $this->setDownloader();
-  }
+  // public function __construct($config = []) {
+  //   global $argv;
+  //   $this->commands = $argv;
+  //
+  //   $this->setQueue();
+  //   $this->setLog([$this, 'fileLog']);
+  //   $this->setDownloader();
+  // }
 
   //爬虫启动函数
-  public function start() {
-    if(!isset($this->commands)) {
-      $this->daemonize = false;
-    }
-
-    if($this->daemonize) {
-      //启动守护进程
-      $this->check();
-
-      $worker = new Worker;
-      $worker->count = $this->count;
-      $worker->name  = $this->name;//worker实例名称
-      $worker->onWorkerStart = [$this, 'onWorkerStart']
-      $worker->onWorkerStop  = [$this, 'onWorkerStop'];
-      $this->worker = $worker;
-
-      Worker::$daemonize = true;
-      Worker::$stdoutFile = $this->logFile;
-
-      $this->queueArgs['name'] = $this->name;
-      $this->initHooks();
-      $this->command();
-      self::run();
-    } else {
-      $this->initHooks();
-      $this->seed = (array) $this->seed;
-      while (count($this->seed)) {
-          $this->crawler();
-      }
-    }
-  }
+  // public function start() {
+  //   if(!isset($this->commands)) {
+  //     $this->daemonize = false;
+  //   }
+  //
+  //   if($this->daemonize) {
+  //     //启动守护进程
+  //     $this->check();
+  //
+  //     $worker = new Worker;
+  //     $worker->count = $this->count;
+  //     $worker->name  = $this->name;//worker实例名称
+  //     $worker->onWorkerStart = [$this, 'onWorkerStart']
+  //     $worker->onWorkerStop  = [$this, 'onWorkerStop'];
+  //     $this->worker = $worker;
+  //
+  //     Worker::$daemonize = true;
+  //     Worker::$stdoutFile = $this->logFile;
+  //
+  //     $this->queueArgs['name'] = $this->name;
+  //     $this->initHooks();
+  //     $this->command();
+  //     self::run();
+  //   } else {
+  //     $this->initHooks();
+  //     $this->seed = (array) $this->seed;
+  //     while (count($this->seed)) {
+  //         $this->crawler();
+  //     }
+  //   }
+  // }
 
   //worker进程启动时执行
   // public function onWorkerStart() {
