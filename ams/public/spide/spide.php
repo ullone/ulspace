@@ -178,7 +178,7 @@ class Spide {
     * @param $args       回调函数的参数，必须是数组
     * @param $persistent 是否持久，若只想执行一次则传false,只执行一次的任务在执行完毕后会自动销毁，不必调用Timer::del()
     */
-    reuturn Timer::add($interval, $callBack, $args, $persistent);
+    return Timer::add($interval, $callBack, $args, $persistent);
   }
 
   public static function timerDel($timer_id) {
