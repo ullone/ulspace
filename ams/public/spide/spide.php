@@ -170,21 +170,21 @@ class Spide {
     }
   }
 
-  // public static function timer($interval, $callBack, $args = [], $persistent = true) {
-  //   /*
-  //   * 调用php页面运行时间检测类，定时执行某个函数或者类方法。
-  //   * @param $interval   执行间隔
-  //   * @param $callback   执行函数，若是类的方法，必须是类的公有方法
-  //   * @param $args       回调函数的参数，必须是数组
-  //   * @param $persistent 是否持久，若只想执行一次则传false,只执行一次的任务在执行完毕后会自动销毁，不必调用Timer::del()
-  //   */
-  //   reuturn Timer::add($interval, $callBack, $args, $persistent);
-  // }
-  //
-  // public static function timerDel($timer_id) {
-  //   Timer::del($timer_id);
-  // }
-  //
+  public static function timer($interval, $callBack, $args = [], $persistent = true) {
+    /*
+    * 调用php页面运行时间检测类，定时执行某个函数或者类方法。
+    * @param $interval   执行间隔
+    * @param $callback   执行函数，若是类的方法，必须是类的公有方法
+    * @param $args       回调函数的参数，必须是数组
+    * @param $persistent 是否持久，若只想执行一次则传false,只执行一次的任务在执行完毕后会自动销毁，不必调用Timer::del()
+    */
+    reuturn Timer::add($interval, $callBack, $args, $persistent);
+  }
+
+  public static function timerDel($timer_id) {
+    Timer::del($timer_id);
+  }
+  
   public static function run() {
     Worker::runAll();
   }
