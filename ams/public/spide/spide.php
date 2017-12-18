@@ -339,12 +339,12 @@ class Spide {
     return $this->queues;
   }
 
-  // public function setQueue($arr = array('algorithm' => 'lp', 'name' => $this->name)) {
-  //   $this->queueFactory = function($arr) {
-  //     return new RedisQueue($arr);
-  //   }
-  //   $this->queueArgs = $arr;
-  // }
+  public function setQueue($arr = array('algorithm' => 'lp', 'name' => 'spide')) {
+    $this->queueFactory = function($arr) {
+      return new RedisQueue($arr);
+    }
+    $this->queueArgs = $arr;
+  }
 
   public function check()
   {
