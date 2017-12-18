@@ -35,14 +35,14 @@ class Spide {
       'stopWorkerHooks',
   ];                        //爬取网页要执行的一系列的钩子函数
 
-  // public function __construct($config = []) {
-  //   global $argv;
-  //   $this->commands = $argv;
-  //
-  //   $this->setQueue();
-  //   $this->setLog([$this, 'fileLog']);
-  //   $this->setDownloader();
-  // }
+  public function __construct($config = []) {
+    global $argv;
+    $this->commands = $argv;
+
+    $this->setQueue();
+    $this->setLog([$this, 'fileLog']);
+    $this->setDownloader();
+  }
 
   //爬虫启动函数
   // public function start() {
