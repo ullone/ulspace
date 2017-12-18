@@ -2,7 +2,7 @@
 exit('haha');
 //require('./tool.php');
 require('Workerman/Worker.php');
-//require('./Workerman/Lib/Timer.php');
+require('Workerman/Lib/Timer.php');
 
 class Spide {
 
@@ -184,7 +184,7 @@ class Spide {
   public static function timerDel($timer_id) {
     Timer::del($timer_id);
   }
-  
+
   public static function run() {
     Worker::runAll();
   }
