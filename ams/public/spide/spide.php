@@ -17,17 +17,35 @@ class Spide {
   public  $timer_id;        //定时服务id
   public  $options = [];    //入队item参数
   public  $daemonize;
+  public  $queue;
   public  $urlFilter = [
     '/^https:\/\/www\.zhihu\.com\/question\/\d{1,}\/answer\/d{1,}$/',
     '/^(https:\/\/)[a-z]{1,}\.zhihu\.com\/p\/(\d{1,})$/'
   ];                        //网址匹配规则
 
   private $queueArgs = [];  //队列规则参数
+  private $logFactory = [];
+  private $downloadFactory = [];
+  private $queueFactory = [];
   private $worker;
   private $url;             //正在处理的url
   private $page;            //从URL爬取的正在处理的页面内容
   private $queues;          //队列实例
   private $commands;
+  private $discoverUrl;
+  private $startWorkerHooks = [];
+  private $stopWorkerHooks = [];
+  private $startWorker;
+  private $stopWorker;
+  private $afterDiscover;
+  private $downloadPage;
+  private $beforeDownloadPage;
+  private $beforeDownloadPageHooks = [];
+  private $afterDownloadPageHooks = []
+  private $downloadPageHooks = [];
+  private $discoverUrlHooks = [];
+  private $afterDiscoverHooks = [];
+  private $afterDownloadPage;
   private $hooks = [
       'startWorkerHooks',
       'beforeDownloadPageHooks',
