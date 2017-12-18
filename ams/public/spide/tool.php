@@ -22,24 +22,24 @@ class Tool {
     return $result;  //抓取的结果
   }
 
-  public static function getUrlByHtml($html, $url) {
-    $pattern = "'<\s*a\s.*?href\s*=\s*([\"\'])?(?(1) (.*?)\\1 | ([^\s\>]+))'isx";
-    preg_match_all($pattern, $str, $match);
-    $match = array_merge($match[2], $match[3]);
-    $hrefs = array_flip(array_flip(array_filter($match)));
-    foreach ($hrefs as $key => $href) {
-        $url = 'https://www.zhihu.com';
-        //若存在其他host，正则获取域名部分
-        $reg = '/[a-z]*\.[a-z]*\.[a-z]*/';
-        if(preg_match($reg, $href, $match)) {
-          $url = 'https://'.$match[0];
-          //正则替换掉域名部分，获取相对路径
-          $href = preg_replace('/(https:\/\/){0,1}\/*[a-z]*\.{0,1}[a-z]*\.[a-z]*/i', '', $href);
-        }
-        $hrefs[$key] = self::formatUrl($href, $url);
-    }
-    return array_flip(array_flip(array_filter($hrefs)));
-  }
+  // public static function getUrlByHtml($html, $url) {
+  //   $pattern = "'<\s*a\s.*?href\s*=\s*([\"\'])?(?(1) (.*?)\\1 | ([^\s\>]+))'isx";
+  //   preg_match_all($pattern, $str, $match);
+  //   $match = array_merge($match[2], $match[3]);
+  //   $hrefs = array_flip(array_flip(array_filter($match)));
+  //   foreach ($hrefs as $key => $href) {
+  //       $url = 'https://www.zhihu.com';
+  //       //若存在其他host，正则获取域名部分
+  //       $reg = '/[a-z]*\.[a-z]*\.[a-z]*/';
+  //       if(preg_match($reg, $href, $match)) {
+  //         $url = 'https://'.$match[0];
+  //         //正则替换掉域名部分，获取相对路径
+  //         $href = preg_replace('/(https:\/\/){0,1}\/*[a-z]*\.{0,1}[a-z]*\.[a-z]*/i', '', $href);
+  //       }
+  //       $hrefs[$key] = self::formatUrl($href, $url);
+  //   }
+  //   return array_flip(array_flip(array_filter($hrefs)));
+  // }
 
   // public static function formatUrl($l1, $l2) {
   //   if (strlen($l1) > 0) {
