@@ -37,7 +37,6 @@ class RedirectIfAuthenticated {
 		{
 			return new RedirectResponse(url('/home/index'));
 		}
-
 		return $next($request);
 	}
 

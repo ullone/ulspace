@@ -690,7 +690,6 @@ class Router implements RegistrarContract {
 	protected function runRouteWithinStack(Route $route, Request $request)
 	{
 		$middleware = $this->gatherRouteMiddlewares($route);
-
 		return (new Pipeline($this->container))
 						->send($request)
 						->through($middleware)
