@@ -389,23 +389,23 @@ class Spide {
       }
   }
 
-  public function shutdown()
-  {
-      $master_pid = is_file(Worker::$pidFile) ? file_get_contents(Worker::$pidFile) : 0;
-      $master_pid && posix_kill($master_pid, SIGINT);
-      $timeout = 5;
-      $start_time = time();
-      while (1) {
-          $master_is_alive = $master_pid && posix_kill($master_pid, 0);
-          if ($master_is_alive) {
-              if (time() - $start_time >= $timeout) {
-                  exit;
-              }
-              usleep(10000);
-              continue;
-          }
-          exit(0);
-          break;
-      }
-  }
+  // public function shutdown()
+  // {
+  //     $master_pid = is_file(Worker::$pidFile) ? file_get_contents(Worker::$pidFile) : 0;
+  //     $master_pid && posix_kill($master_pid, SIGINT);
+  //     $timeout = 5;
+  //     $start_time = time();
+  //     while (1) {
+  //         $master_is_alive = $master_pid && posix_kill($master_pid, 0);
+  //         if ($master_is_alive) {
+  //             if (time() - $start_time >= $timeout) {
+  //                 exit;
+  //             }
+  //             usleep(10000);
+  //             continue;
+  //         }
+  //         exit(0);
+  //         break;
+  //     }
+  // }
 }
