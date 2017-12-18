@@ -73,7 +73,7 @@ class Spide {
 
     if($this->daemonize) {
       //启动守护进程
-      $this->check();
+      // $this->check();
 
       $worker = new Worker;
       $worker->count = $this->count;
@@ -86,14 +86,14 @@ class Spide {
       Worker::$stdoutFile = $this->logFile;
 
       $this->queueArgs['name'] = $this->name;
-      $this->initHooks();
-      $this->command();
+      // $this->initHooks();
+      // $this->command();
       self::run();
     } else {
-      $this->initHooks();
+      // $this->initHooks();
       $this->seed = (array) $this->seed;
       while (count($this->seed)) {
-          $this->crawler();
+          // $this->crawler();
       }
     }
   }
@@ -185,9 +185,9 @@ class Spide {
   //   Timer::del($timer_id);
   // }
   //
-  // public static function run() {
-  //   Worker::runAll();
-  // }
+  public static function run() {
+    Worker::runAll();
+  }
 
   //命令行控制
   // public function command() {
