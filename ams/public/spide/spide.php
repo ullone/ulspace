@@ -60,14 +60,14 @@ class Spide {
       $worker = new Worker;
       $worker->count = $this->count;
       $worker->name  = $this->name;//worker实例名称
-      // $worker->onWorkerStart = [$this, 'onWorkerStart']
-      // $worker->onWorkerStop  = [$this, 'onWorkerStop'];
-      // $this->worker = $worker;
-      //
-      // Worker::$daemonize = true;
-      // Worker::$stdoutFile = $this->logFile;
-      //
-      // $this->queueArgs['name'] = $this->name;
+      $worker->onWorkerStart = [$this, 'onWorkerStart'];
+      $worker->onWorkerStop  = [$this, 'onWorkerStop'];
+      $this->worker = $worker;
+
+      Worker::$daemonize = true;
+      Worker::$stdoutFile = $this->logFile;
+
+      $this->queueArgs['name'] = $this->name;
       // $this->initHooks();
       // $this->command();
       // self::run();
