@@ -7,7 +7,7 @@ class Tool {
   }
 
   public function index() {
-    echo "haha";die;
+
   }
 }
 
