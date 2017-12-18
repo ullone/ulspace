@@ -90,7 +90,6 @@ class Spide {
       $this->command();
       self::run();
     } else {
-      exit('1');
       $this->initHooks();
       $this->seed = (array) $this->seed;
       while (count($this->seed)) {
