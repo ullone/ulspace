@@ -238,8 +238,8 @@ class Spide {
     array_shift($allHooks);
     array_pop($allHooks);
 
-    foreach ($allHooks as $hooks) {//爬取5条记录
-        foreach ($this->$hooks as $hook) {//完成爬取一条记录的整个流程
+    foreach ($allHooks as $hooks) {
+        foreach ($hooks as $hook) {
             call_user_func($hook, $this);
         }
     }
