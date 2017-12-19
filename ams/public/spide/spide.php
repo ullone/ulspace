@@ -317,7 +317,8 @@ class Spide {
   }
 
   public function downloader() {
-    call_user_func($this->downloadFactory, $this->url);
+    $test = call_user_func($this->downloadFactory, $this->url);
+    var_dump($test);die;
   }
 
   private function downloadPage() {
