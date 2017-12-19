@@ -284,6 +284,7 @@ class Spide {
 
   public function defaultDownloadPage() {
     $this->page = $this->downloader();
+    var_dump($this->page);die;
     if($this->page) {
       $worker_id = isset($this->id) ? $this->id : '';
       $this->log("Beanbun worker {$worker_id} download {$this->url} success.");
