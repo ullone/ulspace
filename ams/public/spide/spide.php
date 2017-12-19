@@ -243,11 +243,6 @@ class Spide {
         }
     }
 
-    // $this->queue = '';
-    // $this->url = '';
-    // $this->method = '';
-    // $this->page = '';
-    // $this->options = [];
   }
 
   public function defaultBeforeDownloadPage() {
@@ -301,7 +296,7 @@ class Spide {
     $countUrlFilter = count($this->urlFilter);
 
     $urls = Tool::getUrlByHtml($this->page, $this->url);
-
+    var_dump($urls);die;
     if($countUrlFilter > 0) {
       foreach($urls as $url) {
         foreach($this->urlFilter as $pattern) {
