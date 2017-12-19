@@ -296,20 +296,22 @@ class Spide {
     $countUrlFilter = count($this->urlFilter);
 
     $urls = Tool::getUrlByHtml($this->page, $this->url);
-    var_dump($urls);die;
     if($countUrlFilter > 0) {
       foreach($urls as $url) {
         foreach($this->urlFilter as $pattern) {
           if(preg_match($pattern, $url)) {
+            var_dump($url);
             $this->queue()->add($url);
           }
         }
       }
     } else {
       foreach($urls as $url) {
+        var_dump($url);
         $this->queue()->add($url);
       }
     }
+    die;
   }
 
   public function setDownloader($callBack = null) {
