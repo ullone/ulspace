@@ -34,7 +34,6 @@ class Tool {
         $reg = '/^\/\/[a-z]*\.[a-z]*\.[a-z]*/';
         if(preg_match($reg, $href, $match)) {
           $hrefs[$key] = 'https:'.$href;
-          var_dump($hrefs[$key]);die;
         } else {
           $hrefs[$key] = self::formatUrl($href, $url);
         }
