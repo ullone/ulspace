@@ -21,6 +21,7 @@ class Tool {
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//跳过ssl验证，当没有敏感信息时
     $result = curl_exec($ch);
+    var_dump($result);die;
     return $result;  //抓取的结果
   }
 
