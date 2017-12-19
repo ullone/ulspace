@@ -216,7 +216,7 @@ class Spide {
   }
 
   private function fileLog($msg, $spide) {
-    $myFile  = fopen($this->lofFile, "a") or die ('open file failed!');
+    $myFile  = fopen($this->logFile, "a") or die ('open file failed!');
     $content = date('Y-m-d H:i:s')."$spide->name : $msg\n";
     fwrite($myFile, $content);
     fclose($myFile);
