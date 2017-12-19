@@ -326,7 +326,7 @@ class Spide {
   }
 
   public function queue() {
-    if($this->queues) {
+    if(!$this->queues) {
       $this->queues = call_user_func($this->queueFactory, $this->queueArgs);
     }
     return $this->queues;
