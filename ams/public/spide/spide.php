@@ -300,6 +300,7 @@ class Spide {
       foreach($urls as $url) {
         foreach($this->urlFilter as $pattern) {
           if(preg_match($pattern, $url)) {
+            var_dump($this->queue());die;
             $this->queue()->add($url);
           }
         }
