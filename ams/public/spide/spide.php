@@ -19,8 +19,8 @@ class Spide {
   public  $daemonize;
   public  $queue;
   public  $urlFilter = [
-    '/^https:\/\/www\.zhihu\.com\/question\/\d{1,}\/answer\/d{1,}$/',
-    '/^(https:\/\/)[a-z]{1,}\.zhihu\.com\/p\/(\d{1,})$/'
+    '/(https:\/\/)?www\.zhihu\.com\/question\/\d{1,}\/answer\/d{1,}$/',
+    '/(https:\/\/)?[a-z]{1,}\.zhihu\.com\/p\/(\d{1,})$/'
   ];                        //网址匹配规则
 
   private $queueArgs = [];  //队列规则参数
@@ -296,6 +296,7 @@ class Spide {
     $countUrlFilter = count($this->urlFilter);
 
     $urls = Tool::getUrlByHtml($this->page, $this->url);
+    var_dump($urls);die;
     if($countUrlFilter > 0) {
       foreach($urls as $url) {
         foreach($this->urlFilter as $pattern) {
@@ -307,7 +308,6 @@ class Spide {
       }
     } else {
       foreach($urls as $url) {
-        var_dump($url);
         $this->queue()->add($url);
       }
     }
