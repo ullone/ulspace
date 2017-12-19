@@ -296,7 +296,6 @@ class Spide {
     $countUrlFilter = count($this->urlFilter);
 
     $urls = Tool::getUrlByHtml($this->page, $this->url);
-    var_dump($urls);die;
     if($countUrlFilter > 0) {
       foreach($urls as $url) {
         foreach($this->urlFilter as $pattern) {
