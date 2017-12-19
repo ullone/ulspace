@@ -232,14 +232,13 @@ class Spide {
     } : $callBack;
   }
 
-  //非守护进程下执行，一次爬取五条
   public function crawler() {
     $allHooks = $this->hooks;
     array_shift($allHooks);
     array_pop($allHooks);
 
     foreach ($allHooks as $hooks) {
-        foreach ($hooks as $hook) {
+        foreach ($this->$hooks as $hook) {
             call_user_func($hook, $this);
         }
     }

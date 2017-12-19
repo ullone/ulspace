@@ -12,6 +12,7 @@ class Example {
       die();
     }
     $spide           = new Spide;
+    $spide->seed     = $seedUrls;
     $spide->count    = isset($cfg['count']) ? $cfg['count'] : 5;
     $spide->interval = isset($cfg['interval']) ? $cfg['interval'] : 2;
     $spide->timeout  = isset($cfg['timeout']) ? $cfg['timeout'] : 10;
