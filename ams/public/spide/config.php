@@ -1,7 +1,7 @@
 <?php
 
 return [
-  //redis配置
+  //redis配置 version : 	2.2.8-devphp7
   'host' => '127.0.0.1',
   //redis端口
   'port' => '2207',

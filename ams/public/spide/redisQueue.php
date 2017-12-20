@@ -26,7 +26,7 @@ class RedisQueue {
     if(!$this->redis) {
       $this->redis = new \Redis();
       $this->redis->connect($this->config['host'], $this->config['port']);
-      $this->redis->auth($this->config['password']);
+      // $this->redis->auth($this->config['password']);
     }
     return $this->redis;
   }
