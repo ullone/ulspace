@@ -4,7 +4,7 @@ return [
   //redis配置 version : 	2.2.8-devphp7
   'host' => '127.0.0.1',
   //redis端口
-  'port' => '2207',
+  'port' => '6379',
   //redis密码
   'password' => 'newlif@995',
   //cookie知乎
