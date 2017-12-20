@@ -18,10 +18,11 @@ class Spide {
   public  $options = [];    //入队item参数
   public  $daemonize;
   public  $queue;
-  public  $urlFilter = [
-    '/(https:\/\/)?www\.zhihu\.com\/.*/',
-    '/(https:\/\/)?[a-z]{1,}\.zhihu\.com\/.*/'
-  ];                        //网址匹配规则
+  public  $urlFilter = [];
+  // public  $urlFilter = [
+  //   '/(https:\/\/)?www\.zhihu\.com\/.*/',
+  //   '/(https:\/\/)?[a-z]{1,}\.zhihu\.com\/.*/'
+  // ];                        //网址匹配规则
 
   private $queueArgs = [];  //队列规则参数
   private $logFactory = [];
