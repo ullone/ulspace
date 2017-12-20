@@ -43,24 +43,24 @@ class RedisQueue {
     if($this->isQueued($queue))
       return ;
     if(!isset($options['reserve']) || $options['reserve'] == false)
-      $this->getInstance->rpush($this->key, $queue);
+      $this->getInstance()->rpush($this->key, $queue);
     else
-      $this->getInstance->lpush($this->key, $queue);
+      $this->getInstance()->lpush($this->key, $queue);
   }
 
   public function isQueued($queue) {
     //判断任务是否已经执行过
-    return $this->getInstance->sIsMember($this->queuedKey, $queue);
+    return $this->getInstance()->sIsMember($this->queuedKey, $queue);
   }
 
   //任务弹出队列
   public function next() {
-    if($this->getInstance->lsize($this->key) <= 0)
+    if($this->getInstance()->lsize($this->key) <= 0)
       return ;
     if($this->algorithm = 'lp')
-      $queue = $this->getInstance->lpop();
+      $queue = $this->getInstance()->lpop();
     else
-      $queue = $this->getInstance->rpop();
+      $queue = $this->getInstance()->rpop();
 
     //判断若任务已执行过，则取下一个任务，否则返回任务内容
     if($this->isQueued($queue))
@@ -70,20 +70,20 @@ class RedisQueue {
 
   //下载完成后，将任务添加到已下载队列中
   public function queued($queue) {
-    $this->getInstance->sAdd($queue, serialize($queue));
+    $this->getInstance()->sAdd($queue, serialize($queue));
   }
 
   public function count() {
-    return $this->getInstance->lsize($this->key);
+    return $this->getInstance()->lsize($this->key);
   }
 
   public function queuedCount() {
-    return $this->getInstance->lSize($this->queuedKey);
+    return $this->getInstance()->lSize($this->queuedKey);
   }
 
   public function clean() {
-    $this->getInstance->delete($this->key);
-    $this->getInstance->delete($this->queuedKey);
+    $this->getInstance()->delete($this->key);
+    $this->getInstance()->delete($this->queuedKey);
   }
 
 }
