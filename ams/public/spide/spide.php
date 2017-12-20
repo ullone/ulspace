@@ -308,6 +308,7 @@ class Spide {
       }
     } else {
       foreach($urls as $url) {
+        exit('test');
         $this->queue()->add($url);
       }
     }
